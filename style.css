@@ -1,0 +1,783 @@
+/* General Setup and Variables */
+:root {
+    /* Colors remain optimized for the dark background with particle effect */
+    --navy-blue: #1a1e27; /* Very dark background color */
+    --accent-blue: #4a90e2; /* A brighter blue for accents/highlights */
+    --text-light: #f4f4f4; /* Light text for dark backgrounds */
+    --section-bg-light: #252a34; /* Slightly lighter dark section background */
+    --section-bg-dark: #1a1e27; /* Matches the main background for seamless look */
+    --font-family: 'Poppins', sans-serif;
+    --skill-bar-color: #636263; /* The yellow/orange color from your desired screenshot */
+    --text-light: #f4f4f4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    background-color: var(--navy-blue); /* Base background color */
+    color: var(--text-light);
+    scroll-behavior: smooth;
+    /* IMPORTANT: Make the body full height and position relative */
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ------------------------------------------------ */
+/* LIVE BACKGROUND STYLES */
+/* ------------------------------------------------ */
+#particles-js {
+    position: fixed; /* Fixed position to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--navy-blue);
+    z-index: -1; /* Puts the particles behind all content */
+}
+
+/* Ensure all website content is layered above the particle background */
+
+#content-wrap {
+    position: relative;
+    z-index: 1; 
+    background-color: transparent; 
+    /* NEW: Allow mouse events to pass through this layer to the layer underneath */
+    padding-top: 60px; 
+    pointer-events: auto; 
+}
+
+
+/* ------------------------------------------------ */
+/* Re-enable interactivity for all clickable elements */
+/* ------------------------------------------------ */
+header, footer, nav, 
+a, button, input, textarea, .btn, 
+.nav-links, .contact-form, .timeline-item, 
+.project-card, .skill-item {
+    /* Re-enable pointer events for specific content */
+    pointer-events: auto; 
+}
+
+
+/* Ensure the hero content is also clickable (important for resume button) */
+.hero-content, .about-content, .section-header {
+    pointer-events: auto;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Typography */
+h1, h2, h3 {
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--accent-blue);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #8ac0ff; /* Lighter shade on hover */
+}
+
+.highlight {
+    color: var(--accent-blue);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+}
+
+.primary-btn:hover {
+    background-color: #3b7ad0;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.secondary-btn:hover {
+    background-color: var(--accent-blue);
+    color: var(--navy-blue);
+}
+
+
+/* ------------------------------------------------ */
+/* Header and Navigation */
+/* ------------------------------------------------ */
+header {
+    width: 100%;
+    background-color: rgba(26, 30, 39, 0.95);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: o;
+    z-index: 99;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 a {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    padding: 5px 10px;
+    font-weight: 500;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    /* Set a transparent border/line by default so the size doesn't jump when active */
+    border-bottom: 2px solid transparent; 
+}
+
+.nav-links a:hover {
+    color: var(--accent-blue);
+}
+
+.nav-links a.active-link {
+    color: var(--skill-bar-color); /* Highlight text color */
+    
+    /* The line/underline that moves under the active section */
+    border-bottom: 2px solid var(--skill-bar-color); 
+}
+
+.nav-links a.active-link:first-child:not([style*="0"]) {
+    border-bottom: 2px solid transparent; 
+}
+
+.about-details p a i.fa-orcid {
+    color: #A6CE39; /* Official ORCID green */
+    font-size: 1.1em;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* ------------------------------------------------ */
+/* Menu Toggle Button Styles */
+/* ------------------------------------------------ */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    color: var(--text-light); /* White/light text color */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto; /* Push it to the far right */
+}
+
+.menu-toggle .icon {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+
+/* ------------------------------------------------ */
+/* MOBILE RESPONSIVE STYLES (for screens <= 768px) */
+/* ------------------------------------------------ */
+
+@media (max-width: 768px) {
+    
+    /* 1. SHOW the hamburger menu button */
+    .menu-toggle {
+        display: block; 
+    }
+
+    /* 2. HIDE the default navigation list */
+    header nav {
+        display: none;
+        /* When toggled, we will show it as an overlay */
+        position: absolute;
+        top: 60px; /* Adjust based on your header height */
+        left: 0;
+        width: 100%;
+        background-color: #242424; /* A slightly lighter dark background for the menu */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+    }
+    
+    /* 3. Style the list items for vertical stacking */
+    .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        padding: 10px 0;
+    }
+
+    .nav-links li {
+        margin: 0;
+    }
+
+    .nav-links li a {
+        display: block; /* Make the whole link clickable */
+        padding: 15px 20px;
+        text-align: left;
+    }
+
+    /* 4. CLASS TO SHOW THE MENU (will be added by JS) */
+    header.menu-open nav {
+        display: block;
+    }
+}
+
+/* Sections */
+.section {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light sections will now use a slightly lighter dark color to stand out from the particle background */
+.dark-bg {
+    background-color: var(--section-bg-light); /* Slightly lighter dark background */
+}
+
+.dark-bg-alt {
+    background-color: var(--section-bg-dark); /* Same as main background for About section */
+}
+
+.section-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-top: 20px; /* Added padding to give space for background text */
+    padding-bottom: 20px;
+}
+
+.section-title-bg {
+    font-size: 8rem; /* Large text size for the background */
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05); /* Very faint, light gray color */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    line-height: 1;
+    text-transform: uppercase;
+    pointer-events: none; /* Allows clicks to pass through to content */
+    user-select: none; /* Prevents text selection */
+}   
+
+.section-title-main {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    position: relative;
+    z-index: 2; /* Ensure it is above the background text */
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #ccc;
+    position: relative;
+    z-index: 2;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/* Hero Section */
+.hero {
+    background-color: transparent; /* Allows particles to show through */
+    padding: 100px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    text-align: left; 
+}
+
+.hero-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.hero-image {
+    width: 300px; /* Placeholder size for the avatar */
+    height: 300px;
+    background-color: var(--section-bg-dark);
+    border-radius: 50%;
+    border: 5px solid var(--accent-blue);
+    /* For real image, use background-image or an <img> tag */
+    overflow: hidden; /* Ensure image stays within bounds */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Certifications/Courses Section Styles */
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding-top: 30px;
+}
+
+.certification-card {
+    background-color: #1f232d; /* Slightly lighter dark color */
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cert-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--skill-bar-color); /* Yellow/Orange background */
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-icon i {
+    font-size: 1.8rem;
+    color: #1a1e27; /* Dark color for the icon itself */
+}
+
+.certification-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.certification-card p {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.cert-date {
+    display: block;
+    font-style: italic;
+    color: #999;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.btn-small {
+    /* Base button styling inherited from your main button styles */
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: transparent;
+    border: 2px solid var(--skill-bar-color);
+    color: var(--skill-bar-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-small:hover {
+    background-color: var(--skill-bar-color);
+    color: #1a1e27; /* Dark text on hover */
+}
+
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding-top: 20px;
+}
+
+.skill-item {
+    background-color: transparent;
+    padding: 15px 0;
+}
+
+.skill-name-percent {
+    display: flex;
+    /* Aligns the skill-name (left) and skill-percent (right) on one line */
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 8px; /* Adds space between the text line and the bar */
+}
+
+.skill-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.skill-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.skill-bar span {
+    display: block;
+    height: 100%;
+    background-color: var(--accent-blue);
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+    text-align: right;
+    padding-right: 5px;
+    font-size: 0.7rem;
+    color: var(--navy-blue);
+    font-weight: 700;
+}
+
+/* Education (Timeline) */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: var(--accent-blue);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    width: 50%;
+    padding: 10px 40px;
+    position: relative;
+    margin-bottom: 20px;
+    background-color: var(--section-bg-dark);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    top: 30px;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -7.5px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -7.5px;
+}
+
+.timeline-item h3 {
+    color: var(--accent-blue);
+    margin-bottom: 0.2rem;
+}
+
+.timeline-item .institution {
+    font-style: italic;
+    color: #bbb;
+}
+
+/* Work/Projects */
+.project-grid, .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding-top: 30px;
+}
+
+.project-card {
+    background-color: var(--section-bg-dark); /* Using the lighter dark color here */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease; box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.project-image-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #383838; /* Dark gray background for the icon */
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-image-placeholder i {
+    font-size: 1.8rem;
+    color: var(--skill-bar-color); /* Yellow/Orange accent */
+}
+
+.project-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--accent-blue);
+}
+
+.project-card p {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.tech-stack {
+    display: inline-block;
+    background-color: var(--skill-bar-color);
+    color: #1a1e27; /* Dark text on the yellow badge */
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Contact */
+.contact-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+/* Contact */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--accent-blue);
+    border-radius: 5px;
+    background-color: var(--section-bg-light); /* Using the lighter dark color here */
+    color: var(--text-light);
+    font-family: var(--font-family);
+    resize: vertical;
+}
+
+
+.contact-form textarea {
+    min-height: 150px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.contact-item {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #1f232d; /* Slightly lighter than the background */
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: var(--skill-bar-color); /* Your yellow/orange accent color */
+    background-color: #383838; /* Dark circle background */
+    border-radius: 50%;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.contact-item .label {
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.contact-item p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin: 0;
+}
+
+/* Footer */
+footer {
+    background-color: #101216; /* Even darker for the footer */
+    color: #ccc;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--skill-bar-color); /* Highlight color on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links li {
+        margin: 5px 10px;
+    }
+
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-image {
+        margin-top: 30px;
+    }
+
+    .hero-content h2,
+    .hero-content h3 {
+        text-align: center; /* Center align on small screens */
+    }
+    
+    .section-title-bg {
+        font-size: 4rem; /* Smaller background text on small screens */
+    }
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        left: 0 !important;
+        text-align: left !important;
+    }
+
+    .timeline-item::after {
+        left: 12.5px !important;
+        right: auto !important;
+    }
+}
