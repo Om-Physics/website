@@ -1,13 +1,13 @@
 /* General Setup and Variables */
 :root {
     /* Colors remain optimized for the dark background with particle effect */
-    --navy-blue: #1a1e27; /* Very dark background color */
+    --navy-blue: #1f222c; /* Very dark background color */
     --accent-blue: #4a90e2; /* A brighter blue for accents/highlights */
     --text-light: #f4f4f4; /* Light text for dark backgrounds */
-    --section-bg-light: #252a34; /* Slightly lighter dark section background */
+    --section-bg-light: #313744; /* Slightly lighter dark section background */
     --section-bg-dark: #1a1e27; /* Matches the main background for seamless look */
     --font-family: 'Poppins', sans-serif;
-    --skill-bar-color: #636263; /* The yellow/orange color from your desired screenshot */
+    --skill-bar-color: #dacb07; /* The yellow/orange color from your desired screenshot */
     --text-light: #f4f4f4;
 }
 
